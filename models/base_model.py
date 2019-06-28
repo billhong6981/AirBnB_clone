@@ -17,6 +17,9 @@ class BaseModel:
                 if ky is "created_at" or ky is "updated_at":
                     setattr(self, ky, d.now().strftime("%Y-%m-%dT%H:%M:%S.%f"))
 
+                elif ky is "__class__":
+                    continue
+
                 else:
                     setattr(self, ky, value)
         else:
