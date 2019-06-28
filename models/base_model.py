@@ -1,54 +1,48 @@
-#!/usr/bin/python3
-"""
-The module for the base model class that all other class will inherit from.
-"""
+#!/usr/bin/python3                                                                                                      """my base models"""
+import os
+import json
 import uuid
 from datetime import datetime as d
 
 
 class BaseModel:
-    """
-    """
+    """my basemodel class"""
+
     def __init__(self, *args, **kwargs):
-        """
-        """
+        """base instance constructor"""
         if kwargs:
-            for ky, value in kwargs.items():
-                if ky is "created_at" or ky is "updated_at":
-                    setattr(self, ky, d.now().strftime("%Y-%m-%dT%H:%M:%S.%f"))
-
-                elif ky is "__class__":
+            for k, v in kwargs.items():
+                if k is "updated_at":
+                    setattr(self, k, d.now())
+                elif k is "created_at":
+                    setattr(self, k, d.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
+                elif k is "__class__":
                     continue
-
                 else:
-                    setattr(self, ky, value)
+                    setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
             self.created_at = d.now()
             self.updated_at = d.now()
 
     def __str__(self):
-        """
-        """
+        """return string for print function"""
         return "[{}] ({}) {}".format(self.__class__.__name__,
                                      self.id, self.__dict__)
 
     def save(self):
-        """
-        """
+        """update the attribute updated_at with current datetime"""
         self.updated_at = d.now()
 
     def to_dict(self):
-        """
-        """
-        dictionary = {}
-
-        for key, value in self.__dict__.items():
-            if key is "created_at" or key is "updated_at":
-                dictionary[key] = d.isoformat(value)
-
+        """return the instance attributes dictionary"""
+        dic = {}
+        for k, v in self.__dict__.items():
+            if k[0] is "_":
+                dic[k.split("__")[1]] = v
+            elif k is "created_at" or k is "updated_at":
+                dic[k] = d.strftime(v, "%Y-%m-%dT%H:%M:%S.%f")
             else:
-                dictionary[key] = value
-
-        dictionary["__class__"] = self.__class__.__name__
-        return dictionary
+                dic[k] = v
+        dic["__class__"] = self.__class__.__name__
+        return dic
