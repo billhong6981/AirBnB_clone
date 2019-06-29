@@ -3,6 +3,7 @@ import os
 import json
 import uuid
 from datetime import datetime as d
+import models
 
 
 class BaseModel:
@@ -12,18 +13,15 @@ class BaseModel:
         """base instance constructor"""
         if kwargs:
             for k, v in kwargs.items():
-                if k is "updated_at":
-                    setattr(self, k, d.now())
-                elif k is "created_at":
+                if k == "updated_at" or k == "created_at":
                     setattr(self, k, d.strptime(v, "%Y-%m-%dT%H:%M:%S.%f"))
-                elif k is "__class__":
-                    continue
-                else:
+                elif k != "__class__":
                     setattr(self, k, v)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = d.now()
-            self.updated_at = d.now()
+            self.created_at = d.utcnow()
+            self.updated_at = d.utcnow()
+            models.storage.new(self)
 
     def __str__(self):
         """return string for print function"""
@@ -32,17 +30,21 @@ class BaseModel:
 
     def save(self):
         """update the attribute updated_at with current datetime"""
-        self.updated_at = d.now()
+        self.updated_at = d.utcnow()
+        models.storage.save()
 
     def to_dict(self):
         """return the instance attributes dictionary"""
+
         dic = {}
         for k, v in self.__dict__.items():
-            if k[0] is "_":
-                dic[k.split("__")[1]] = v
-            elif k is "created_at" or k is "updated_at":
+            if k == "created_at" or k == "updated_at":
                 dic[k] = d.strftime(v, "%Y-%m-%dT%H:%M:%S.%f")
             else:
                 dic[k] = v
         dic["__class__"] = self.__class__.__name__
+        #dic = self.__dict__.copy()
+        #dic['created_at'] = d.isoformat(dic['created_at'])
+        #dic['updated_at'] = d.isoformat(dic['updated_at'])
+        #dic["__class__"] = self.__class__.__name__
         return dic
