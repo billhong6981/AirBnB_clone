@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
 """
-from models import to_dic()
+from models.base_model import BaseModel
 import json
 import os
 
@@ -33,7 +33,7 @@ class FileStorage:
         """
         return self.__objects
 
-    @object.setter
+    @objects.setter
     def objects(self, value):
         """
         """
@@ -47,22 +47,29 @@ class FileStorage:
     def new(self, obj):
         """
         """
-        banjo = self.__class__.__name__ + "." + obj.id
-        return self.__objects[banjo] = obj
+        banjo = obj.__class__.__name__ + "." + obj.id
+        self.__objects[banjo] = obj
 
     def save(self):
         """
         """
         dictionary = {}
-        for key, value in _objects.items():
-            dictionary[key] = self.__objects[k].to_dict()
+        for key, value in self.__objects.items():
+            dictionary[key] = value.to_dict()
 
-        with open(__file_path, 'w') as f:
-            json.dumps(dictionary, f)
+        with open(self.__file_path, 'w') as f:
+            json.dump(dictionary, f)
 
     def reload(self):
         """
         """
-        if os.path.exist(__file_path) is True:
-            with open(__file_path, 'r') as f:
-                json.loads(__objects)
+        dictOfdict = {}
+        try:
+        # if os.path.exists(self.__file_path):
+            with open(self.__file_path, 'r') as f:
+                dictOfdict = json.load(f)
+                for k, v in dictOfdict.items():
+                    self.__objects[k] = BaseModel(**v)
+
+        except:
+            pass
