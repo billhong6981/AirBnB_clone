@@ -90,15 +90,36 @@ class HBNBCommand(cmd.Cmd):
             ins = all_objs[search]
             print(ins)
             return True
-        except NameError:
+        except KeyError:
             print("** no instance found **")
             return False
 
-    def do_destroy(self, arg):
+    def do_destroy(self, line):
         """
         deletes the instance of class
         """
-        pass
+        if line is None or line == "":
+            print("** class name missing **")
+            return False
+        arg = line.split()
+        try:
+            obj = (eval(arg[0]))()
+        except NameError:
+            print("** class doesn't exist **")
+            return False
+
+        if arg[1] is None or arg[1] == "":
+            print("** instance id missing **")
+            return False
+
+        all_objs = storage.all()
+        search = (arg[0] + "." + arg[1])
+        try:
+            del all_objs[search]
+            obj.save()
+        except KeyError:
+            print("** no instance found **")
+            return False
 
     def do_all(self, arg):
         """
