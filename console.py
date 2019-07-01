@@ -5,7 +5,7 @@ import cmd
 import sys
 from models.base_model import BaseModel
 from models import storage
-#from models.engine.file_storage import FileStorage
+from models.user import User
 
 
 class HBNBCommand(cmd.Cmd):
@@ -74,7 +74,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         arg = line.split()
-        if arg[0] != "BaseModel":
+        if arg[0] != "BaseModel" and arg[0] != "User":
             print("** class doesn't exist **")
             return False
 
@@ -99,7 +99,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         arg = line.split()
-        if arg[0] != "BaseModel":
+        if arg[0] != "BaseModel" and arg[0] != "User":
             print("** class doesn't exist **")
             return False
 
@@ -124,7 +124,7 @@ class HBNBCommand(cmd.Cmd):
         list_a = []
         if line is not None and line != "":
             arg = line.split()
-            if arg[0] != "BaseModel":
+            if arg[0] != "BaseModel" and arg[0] != "User":
                 print("** class doesn't exist **")
                 return False
         all_objs = storage.all()
@@ -142,7 +142,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return False
         arg = line.split()
-        if arg[0] != "BaseModel":
+        if arg[0] != "BaseModel" and arg[0] != "User":
             print("** class doesn't exist **")
             return False
 
