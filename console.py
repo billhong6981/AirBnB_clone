@@ -59,7 +59,8 @@ class HBNBCommand(cmd.Cmd):
         """
         create new instance function
         """
-        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        c = ["BaseModel", "User", "Place", "City", "State",
+             "Amenity", "Review"]
         l = []
         if line is None or line == "":
             print("** class name missing **")
@@ -81,7 +82,8 @@ class HBNBCommand(cmd.Cmd):
         """
         display the information about instance of class
         """
-        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        c = ["BaseModel", "User", "Place", "City", "State",
+             "Amenity", "Review"]
         l = []
         if line is None or line == "":
             print("** class name missing **")
@@ -109,7 +111,8 @@ class HBNBCommand(cmd.Cmd):
         """
         deletes the instance of class
         """
-        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        c = ["BaseModel", "User", "Place", "City", "State",
+             "Amenity", "Review"]
         l = []
         if line is None or line == "":
             print("** class name missing **")
@@ -128,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
         search = (arg[0] + "." + arg[1])
         try:
             del all_objs[search]
-            storage.save() #obj.save()
+            storage.save()
         except KeyError:
             print("** no instance found **")
             return False
@@ -137,7 +140,8 @@ class HBNBCommand(cmd.Cmd):
         """
         display all instances of the same class
         """
-        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        c = ["BaseModel", "User", "Place", "City", "State",
+             "Amenity", "Review"]
         string = ""
         list_a = []
         l = []
@@ -156,7 +160,8 @@ class HBNBCommand(cmd.Cmd):
         """
         updates the new info to the existing instance
         """
-        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        c = ["BaseModel", "User", "Place", "City",
+             "State", "Amenity", "Review"]
         l = []
         if line is None or line == "":
             print("** class name missing **")
@@ -172,7 +177,7 @@ class HBNBCommand(cmd.Cmd):
             return False
 
         all_objs = storage.all()
-        #all_objs = storage.objects
+
         search = (arg[0] + "." + arg[1])
         try:
             ins = all_objs[search]
@@ -189,8 +194,9 @@ class HBNBCommand(cmd.Cmd):
 
         if search in all_objs:
             setattr(all_objs[search], arg[2], arg[3][1:-1])
-            #obj.save()
+
             storage.save()
+
 
 if __name__ == "__main__":
     HBNBCommand().cmdloop()

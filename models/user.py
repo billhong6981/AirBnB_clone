@@ -1,4 +1,6 @@
-#!/usr/bin/python3                                                                                                     """my first user module"""
+#!/usr/bin/python3
+"""my first user module"""
+
 from models.base_model import BaseModel
 
 

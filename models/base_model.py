@@ -1,4 +1,6 @@
-#!/usr/bin/python3                                                                                                      """my base models"""
+#!/usr/bin/python3
+"""my base models"""
+
 import os
 import json
 import uuid
