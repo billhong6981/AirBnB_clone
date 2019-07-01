@@ -19,21 +19,8 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
-    def cmdloop(self):
-        return cmd.Cmd.cmdloop(self)
-
-    def parseline(self, line):
-        ret = cmd.Cmd.parseline(self, line)
-        return ret
-
-    def onecmd(self, s):
-        return cmd.Cmd.onecmd(self, s)
-
     def emptyline(self):
         pass
-
-    def default(self, line):
-        return cmd.Cmd.default(self, line)
 
     def do_quit(self, arg):
         """
