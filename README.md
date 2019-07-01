@@ -1,5 +1,5 @@
 # AirBnB_clone (The Holberton B&B)
-![Image of Hol AirBnB Logo](https://holbertonintranet.s3.amazonaws.com/uploads/medias/2018/6/65f4a1dd9c51265f49d0.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIARDDGGGOUXW7JF5MT%2F20190701%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20190701T223807Z&X-Amz-Expires=86400&X-Amz-SignedHeaders=host&X-Amz-Signature=048d405fe03edc6999b7369405a2f967b665a67ff06e099a0a4378cea4737dc0)
+![Image of Hol AirBnB Logo](/images/65f4a1dd9c51265f49d0.png)
 
 ## Description
 This project was created as part of the 2nd trimester curriculum at [Holberton School](https://www.holbertonschool.com/), San Francisco. We won't be covering the entire process of creating a clone of AirBnB's website. Instead we will do it step by step.
