@@ -4,8 +4,13 @@
 import cmd
 import sys
 from models.base_model import BaseModel
-from models import storage
 from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -54,10 +59,16 @@ class HBNBCommand(cmd.Cmd):
         """
         create new instance function
         """
+        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        l = []
         if line is None or line == "":
             print("** class name missing **")
             return False
         arg = line.split()
+        l = [i for i in c if i == arg[0]]
+        if l == []:
+            print("** class doesn't exist **")
+            return False
         try:
             obj = (eval(arg[0]))()
             print(obj.id)
@@ -70,11 +81,14 @@ class HBNBCommand(cmd.Cmd):
         """
         display the information about instance of class
         """
+        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        l = []
         if line is None or line == "":
             print("** class name missing **")
             return False
         arg = line.split()
-        if arg[0] != "BaseModel" and arg[0] != "User":
+        l = [i for i in c if i == arg[0]]
+        if l == []:
             print("** class doesn't exist **")
             return False
 
@@ -95,11 +109,14 @@ class HBNBCommand(cmd.Cmd):
         """
         deletes the instance of class
         """
+        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        l = []
         if line is None or line == "":
             print("** class name missing **")
             return False
         arg = line.split()
-        if arg[0] != "BaseModel" and arg[0] != "User":
+        l = [i for i in c if i == arg[0]]
+        if l == []:
             print("** class doesn't exist **")
             return False
 
@@ -120,29 +137,33 @@ class HBNBCommand(cmd.Cmd):
         """
         display all instances of the same class
         """
+        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
         string = ""
         list_a = []
+        l = []
         if line is not None and line != "":
             arg = line.split()
-            if arg[0] != "BaseModel" and arg[0] != "User":
+            l = [i for i in c if i == arg[0]]
+            if l == []:
                 print("** class doesn't exist **")
                 return False
         all_objs = storage.all()
         for k, v in all_objs.items():
             list_a.append(str(v))
-            #string += str(v)
-        #print("[\"{}\"]".format(string))
         print(list_a)
 
     def do_update(self, line):
         """
         updates the new info to the existing instance
         """
+        c = ["BaseModel", "User", "Place", "City", "State", "Amenity", "Review"]
+        l = []
         if line is None or line == "":
             print("** class name missing **")
             return False
         arg = line.split()
-        if arg[0] != "BaseModel" and arg[0] != "User":
+        l = [i for i in c if i == arg[0]]
+        if l == []:
             print("** class doesn't exist **")
             return False
 

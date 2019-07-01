@@ -1,8 +1,13 @@
 #!/usr/bin/python3
 """my serialization and deserialization module"""
-#from models.base_model import BaseModel
-#from models.user import User
-from models import *
+from models.base_model import BaseModel
+from models.user import User
+from models.place import Place
+from models.state import State
+from models.city import City
+from models.amenity import Amenity
+from models.review import Review
+import models
 import json
 import os
 
