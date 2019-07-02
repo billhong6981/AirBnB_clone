@@ -26,9 +26,6 @@ class HBNBCommand(cmd.Cmd):
         ret = cmd.Cmd.parseline(self, line)
         return ret
 
-    #def onecmd(self, s):
-     #   return cmd.Cmd.onecmd(self, s)
-
     def emptyline(self):
         pass
 
@@ -39,7 +36,8 @@ class HBNBCommand(cmd.Cmd):
             line2 = line1[1].split("(")
             line = str(line2[0]) + " " + str(line1[0])
             if line2 and len(line2) > 1 and len(line2[1]) < 40:
-                line = str(line2[0]) + " " + str(line1[0]) + " " + str(line2[1][1:-2])
+                line = (str(line2[0]) + " " + str(line1[0]) +
+                        " " + str(line2[1][1:-2]))
                 print(line)
             if line2 and len(line2) > 1 and len(line2[1]) > 42:
                 ln = line2[1].split(",")
@@ -48,7 +46,8 @@ class HBNBCommand(cmd.Cmd):
                     s_2 = ln[1][2:-1]
                     s_3 = ln[2][1:]
                     line2[1] = str(s_1) + " " + str(s_2) + " " + str(s_3)
-                line = str(line2[0]) + " " + str(line1[0]) + " " + str(line2[1][1:-1])
+                line = (str(line2[0]) + " " + str(line1[0]) +
+                        " " + str(line2[1][1:-1]))
                 print(line)
             return self.onecmd(line)
         else:
@@ -164,7 +163,7 @@ class HBNBCommand(cmd.Cmd):
         string = ""
         list_a = []
         l = []
-        if line: # is not None and line != "":
+        if line:
             arg = line.split()
             l = [i for i in c if i == arg[0]]
             if l == []:
