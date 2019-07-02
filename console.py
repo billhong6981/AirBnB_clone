@@ -77,7 +77,43 @@ class HBNBCommand(cmd.Cmd):
         my help function
         """
         print('Quit command to exit the program')
-        return True
+
+    def help_update(self):
+        """
+        help for update syntax
+        """
+        print('Usage: update <class name> <id> ', end='')
+        print('<attribute name> "<attribute value>"')
+
+    def help_count(self):
+        """
+        help for count command
+        """
+        print('Usage: <class name>.count()')
+
+    def help_all(self):
+        """
+        help for all command
+        """
+        print("Usage: all <class name> or $ all")
+
+    def help_destroy(self):
+        """
+        help for destroy command
+        """
+        print("Usage: destroy <class name> <id>")
+
+    def help_create(self):
+        """
+        help for create command
+        """
+        print("Usage: create <class name>")
+
+    def help_show(self):
+        """
+        help for show command
+        """
+        print("Usage: show <class name> <id>")
 
     def do_EOF(self, arg):
         """
