@@ -15,21 +15,34 @@ from models import storage
 
 class HBNBCommand(cmd.Cmd):
     """
-    my console dashboard class"""
+    my console dashboard class
+    """
 
     prompt = '(hbnb) '
 
     def cmdloop(self):
+        """
+        cmdloop function
+        """
         return cmd.Cmd.cmdloop(self)
 
     def parseline(self, line):
+        """
+        parse command line function
+        """
         ret = cmd.Cmd.parseline(self, line)
         return ret
 
     def emptyline(self):
+        """
+        avoid the last command output function
+        """
         pass
 
     def default(self, line):
+        """
+        default executable command function
+        """
         if line:
             line1 = line.split(".")
         if line1 and len(line1) > 1:
