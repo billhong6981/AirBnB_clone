@@ -26,14 +26,33 @@ class HBNBCommand(cmd.Cmd):
         ret = cmd.Cmd.parseline(self, line)
         return ret
 
-    def onecmd(self, s):
-        return cmd.Cmd.onecmd(self, s)
+    #def onecmd(self, s):
+     #   return cmd.Cmd.onecmd(self, s)
 
     def emptyline(self):
         pass
 
     def default(self, line):
-        return cmd.Cmd.default(self, line)
+        if line:
+            line1 = line.split(".")
+        if line1 and len(line1) > 1:
+            line2 = line1[1].split("(")
+            line = str(line2[0]) + " " + str(line1[0])
+            if line2 and len(line2) > 1 and len(line2[1]) < 40:
+                line = str(line2[0]) + " " + str(line1[0]) + " " + str(line2[1][1:-2])
+                print(line)
+            if line2 and len(line2) > 1 and len(line2[1]) > 42:
+                ln = line2[1].split(",")
+                if len(ln) > 2:
+                    s_1 = ln[0][:-1]
+                    s_2 = ln[1][2:-1]
+                    s_3 = ln[2][1:]
+                    line2[1] = str(s_1) + " " + str(s_2) + " " + str(s_3)
+                line = str(line2[0]) + " " + str(line1[0]) + " " + str(line2[1][1:-1])
+                print(line)
+            return self.onecmd(line)
+        else:
+            return cmd.Cmd.default(self, line)
 
     def do_quit(self, arg):
         """
@@ -145,16 +164,45 @@ class HBNBCommand(cmd.Cmd):
         string = ""
         list_a = []
         l = []
-        if line is not None and line != "":
+        if line: # is not None and line != "":
             arg = line.split()
             l = [i for i in c if i == arg[0]]
             if l == []:
                 print("** class doesn't exist **")
                 return False
         all_objs = storage.all()
-        for k, v in all_objs.items():
-            list_a.append(str(v))
-        print(list_a)
+        if l != []:
+            for k, v in all_objs.items():
+                if (k.split("."))[0] == arg[0]:
+                    list_a.append(str(v))
+            print(list_a)
+        else:
+            for k, v in all_objs.items():
+                list_a.append(str(v))
+            print(list_a)
+
+    def do_count(self, line):
+        """
+        display number of instances of the same class
+        """
+        c = ["BaseModel", "User", "Place", "City", "State",
+             "Amenity", "Review"]
+        string = ""
+        list_a = []
+        l = []
+        cnt = 0
+        if line:
+            arg = line.split()
+            l = [i for i in c if i == arg[0]]
+            if l == []:
+                print("** class doesn't exist **")
+                return False
+        all_objs = storage.all()
+        if l != []:
+            for k, v in all_objs.items():
+                if (k.split("."))[0] == arg[0]:
+                    cnt += 1
+        print(cnt)
 
     def do_update(self, line):
         """
