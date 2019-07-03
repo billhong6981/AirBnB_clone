@@ -78,6 +78,16 @@ class Test_FileStorage(unittest.TestCase):
         with self.assertRaises(TypeError):
             v = dic[ben.my_number]
 
+    def test_for_save(self):
+        """
+        test to check for save method alone
+        """
+        ben = FileStorage()
+        ben.save()
+        with open("file.json", 'r') as f:
+            read_var = f.read()
+            self.assertEqual(f.read(), "")
+
     def test_file_exist_1(self):
         """
         test for json file existence
