@@ -58,3 +58,11 @@ class Test_StateClass(unittest.TestCase):
         self.assertEqual(kwargs, user1.__dict__)
         self.assertTrue(user1.__dict__ == user1_load.__dict__)
         self.assertTrue(user1_dic, user1_load_dic)
+
+    def test_name(self):
+        """
+        test the name class attribute
+        """
+        bill = State()
+        bill.name = "abdlfah"
+        self.assertEqual(type(State.name), str)
