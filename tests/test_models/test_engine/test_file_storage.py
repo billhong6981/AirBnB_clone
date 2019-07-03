@@ -54,6 +54,14 @@ class Test_FileStorage(unittest.TestCase):
         obj = models.storage._FileStorage__objects
         self.assertEqual(dic, obj)
 
+    def test_method_all_2(self):
+        """
+        test for the StorageFile all method
+        """
+        ben = FileStorage()
+        some_dict = ben.all()
+        self.assertEqual(type(some_dict), dict)
+
     def test_method_new(self):
         """
         test to see if obj.__class__.__name__ is in dictionary
@@ -231,6 +239,16 @@ class Test_FileStorage(unittest.TestCase):
         user1 = BaseModel(my_number=89)
         with self.assertRaises(TypeError):
             models.storage.reload(user1)
+
+    def test_exceptions_5(self):
+        """test for type error"""
+        with self.assertRaises(AttributeError):
+            FileStorage.__objects
+
+    def test_exceptions_6(self):
+        """test for type error"""
+        with self.assertRaises(AttributeError):
+            FileStorage.__file_path
 
     def test_dictionary(self):
         """test for dictionary"""
