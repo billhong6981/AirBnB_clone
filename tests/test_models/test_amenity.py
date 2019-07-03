@@ -57,3 +57,11 @@ class Test_AmenityClass(unittest.TestCase):
         self.assertTrue(kwargs == user1_load.__dict__)
         self.assertEqual(kwargs, user1.__dict__)
         self.assertTrue(user1.__dict__ == user1_load.__dict__)
+
+    def test_name(self):
+        """
+        test the password class attribute
+        """
+        bill = Amenity()
+        bill.name = "abdlfah"
+        self.assertEqual(type(Amenity.name), str)
