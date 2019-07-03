@@ -80,7 +80,7 @@ class Test_BaseModel(unittest.TestCase):
 
     def test_Basemodel(self):
         """
-        test to see if to_dict can be used as an argument
+        test the type of the instance
         """
         bill = BaseModel()
         bill_json = bill.to_dict()
@@ -104,6 +104,28 @@ class Test_BaseModel(unittest.TestCase):
         bill_json = bill.to_dict()
         my_new_model = BaseModel(**bill_json)
         self.assertNotEqual(bill, my_new_model)
+
+    def test_createdAt_classes(self):
+        """
+        test the creeated_at atrribute with 2 instances
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        old_created = bill.created_at
+        my_new_model = BaseModel(**bill_json)
+        new_created = my_new_model.created_at
+        self.assertEqual(old_created, new_created)
+
+    def test_id_obj(self):
+        """
+        test the id atrribute with 2 instances
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        old_id = bill.created_at
+        my_new_model = BaseModel(**bill_json)
+        new_id = my_new_model.created_at
+        self.assertEqual(old_id, new_id)
 
 if __name__ == "__main__":
     unittest.main()
