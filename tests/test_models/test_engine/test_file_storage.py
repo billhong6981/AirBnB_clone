@@ -14,31 +14,53 @@ class Test_FileStorage(unittest.TestCase):
     unit test for FileStorage class
     """
 
-    def test_class_attr_1(self):
+    def test_private_class_attr_1(self):
         """
-        test to see if __file_path is existing file for open
+        test to see if __file_path is type of str
+        """
+        filename = models.storage._FileStorage__file_path
+        self.assertEqual(type(filename), str)
+
+    def test_private_class_attr_2(self):
+        """
+        test to see if __objects is type of dict
+        """
+        obj = models.storage._FileStorage__objects
+        self.assertEqual(type(obj), dict)
+
+    def test_class_objects(self):
+        """
+        test to see if __objects store all class obj with key
         """
         ben = BaseModel()
-        ben.save()
-        all_obj = models.storage.all()
-        self.assertTrue(all_obj is not None)
+        obj = models.storage._FileStorage__objects
+        key = ben.__class__.__name__ + "." + ben.id
+        self.assertEqual(obj[key], ben)
 
-    def test_class_attr_2(self):
+    def test_method_all(self):
         """
-        test to see if __objects is dict type
+        test to see if method all is return dict type object
         """
         ben = models.storage.all()
         self.assertEqual(type(ben), dict)
 
-    def test_new_obj(self):
+    def test_method_all_1(self):
+        """
+        test to see if all method is a dictionary
+        """
+        dic = models.storage.all()
+        obj = models.storage._FileStorage__objects
+        self.assertEqual(dic, obj)
+
+    def test_method_new(self):
         """
         test to see if obj.__class__.__name__ is in dictionary
         """
         ben = BaseModel()
         models.storage.new(ben)
-        dic = models.storage.all()
+        obj = models.storage._FileStorage__objects
         key = ben.__class__.__name__ + "." + ben.id
-        self.assertEqual(dic[key], ben)
+        self.assertEqual(obj[key], ben)
 
     def test_forTo_dict(self):
         """
