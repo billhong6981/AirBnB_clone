@@ -68,21 +68,25 @@ class Test_PlaceClass(unittest.TestCase):
         self.assertEqual(type(Place.city_id), str)
 
     def test_user_id(self):
-        """                                                                                                   test the user_id call attribute
+        """
+        test the user_id call attribute
         """
         bill = Place()
         bill.user_id = "hug"
         self.assertEqual(type(Place.user_id), str)
 
     def test_name(self):
-        """                                                                                                   test the city_id call attribute
+        """
+        test the city_id call attribute
         """
         bill = Place()
         bill.name = "hug"
         self.assertEqual(type(Place.name), str)
 
     def test_description(self):
-        """                                                                                                   test the city_id call attribute                                                                       """
+        """
+        test the city_id call attribute
+        """
         bill = Place()
         bill.description = "hug"
         self.assertEqual(type(Place.description), str)
