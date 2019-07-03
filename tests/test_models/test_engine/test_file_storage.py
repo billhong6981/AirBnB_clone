@@ -7,7 +7,7 @@ from models.base_model import BaseModel
 from models.user import User
 import models
 from models.engine.file_storage import FileStorage
-
+from os import path
 
 class Test_FileStorage(unittest.TestCase):
     """
@@ -61,6 +61,36 @@ class Test_FileStorage(unittest.TestCase):
         obj = models.storage._FileStorage__objects
         key = ben.__class__.__name__ + "." + ben.id
         self.assertEqual(obj[key], ben)
+
+    def test_save_reload_method(self):
+        """
+        test save and reload method
+        """
+        ben = BaseModel()
+        ben.my_number = 89
+        models.storage.save()
+        models.storage.reload()
+        obj = models.storage._FileStorage__objects
+        key = ben.__class__.__name__ + "." + ben.id
+        dic = obj[key]
+        with self.assertRaises(TypeError):
+            v = dic[ben.my_number]
+
+    def test_file_exist_1(self):
+        """
+        test for json file existence
+        """
+        ben = BaseModel()
+        models.storage.save()
+        self.assertTrue(path.exists("file.json"))
+
+    def test_file_exist_2(self):
+        """
+        test for json file existence
+        """
+        ben = BaseModel()
+        models.storage.reload()
+        self.assertTrue(path.exists("file.json"))
 
     def test_forTo_dict(self):
         """
