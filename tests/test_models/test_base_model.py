@@ -38,7 +38,7 @@ class Test_BaseModel(unittest.TestCase):
         test the output of the __str__
         """
         bill = BaseModel()
-        self.assertEqual(print(bill), None)
+        self.assertEqual(type(str(bill)), str)
 
     def test_the_lengthOf_id(self):
         """
