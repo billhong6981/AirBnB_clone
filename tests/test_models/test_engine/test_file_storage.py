@@ -8,6 +8,8 @@ from models.user import User
 import models
 from models.engine.file_storage import FileStorage
 from os import path
+import json
+import os
 
 class Test_FileStorage(unittest.TestCase):
     """
@@ -234,6 +236,19 @@ class Test_FileStorage(unittest.TestCase):
         self.assertEqual(kwargs, user1.__dict__)
         self.assertTrue(user1.__dict__ == user1_load.__dict__)
         self.assertTrue(user1_dic, user1_load_dic)
+
+    def test_reload_method(self):
+        """
+        test if the reload method works
+        """
+        bill = FileStorage()
+        bill_dict = {"BaseModel.497328": {"id": 497328}}
+        bill_dict["BaseModel.693892"] = {"id": 497328}
+
+        with open("file.json", 'w+') as f:
+            json.dumps(bill_dict, f)
+        bill.reload()
+        self.assertEqual(len(bill_dict), 2)
 
 if __name__ == "__main__":
     unittest.main()
