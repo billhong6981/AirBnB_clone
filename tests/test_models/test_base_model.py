@@ -78,7 +78,7 @@ class Test_BaseModel(unittest.TestCase):
         my_new_model = BaseModel(**bill_json)
         self.assertNotEqual(type(my_new_model), dict)
 
-    def test_jsonType(self):
+    def test_Basemodel(self):
         """
         test to see if to_dict can be used as an argument
         """
@@ -86,6 +86,24 @@ class Test_BaseModel(unittest.TestCase):
         bill_json = bill.to_dict()
         my_new_model = BaseModel(**bill_json)
         self.assertEqual(type(my_new_model), BaseModel)
+
+    def test_jsonType(self):
+        """
+        test to see if the json is a str
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        for key in bill_json.keys():
+            self.assertEqual(type(key), str)
+
+    def test_json_convertBack(self):
+        """
+        test to see if to_dict can do the oppposite
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        my_new_model = BaseModel(**bill_json)
+        self.assertNotEqual(bill, my_new_model)
 
 if __name__ == "__main__":
     unittest.main()
