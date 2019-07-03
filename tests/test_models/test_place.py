@@ -58,3 +58,87 @@ class Test_PlaceClass(unittest.TestCase):
         self.assertEqual(kwargs, user1.__dict__)
         self.assertTrue(user1.__dict__ == user1_load.__dict__)
         self.assertTrue(user1_dic, user1_load_dic)
+
+    def test_city_id(self):
+        """
+        test the city_id call attribute
+        """
+        bill = Place()
+        bill.city_id = "hug"
+        self.assertEqual(type(Place.city_id), str)
+
+    def test_user_id(self):
+        """                                                                                                   test the user_id call attribute
+        """
+        bill = Place()
+        bill.user_id = "hug"
+        self.assertEqual(type(Place.user_id), str)
+
+    def test_name(self):
+        """                                                                                                   test the city_id call attribute
+        """
+        bill = Place()
+        bill.name = "hug"
+        self.assertEqual(type(Place.name), str)
+
+    def test_description(self):
+        """                                                                                                   test the city_id call attribute                                                                       """
+        bill = Place()
+        bill.description = "hug"
+        self.assertEqual(type(Place.description), str)
+
+    def test_number_rooms(self):
+        """
+        test the city_id call attribute
+        """
+        bill = Place()
+        bill.number_rooms = 89
+        self.assertEqual(type(Place.number_rooms), int)
+
+    def test_number_bathrooms(self):
+        """
+        test the number_bathrooms call attribute
+        """
+        bill = Place()
+        number_bathrooms = 89
+        self.assertEqual(type(Place.number_bathrooms), int)
+
+    def test_max_guest(self):
+        """
+        test the city_id call attribute
+        """
+        bill = Place()
+        bill.max_guest = 89
+        self.assertEqual(type(Place.max_guest), int)
+
+    def test_price_by_night(self):
+        """
+        test the price_by_night call attribute
+        """
+        bill = Place()
+        bill.price_by_night = 89
+        self.assertEqual(type(Place.price_by_night), int)
+
+    def test_latitude(self):
+        """
+        test the latitude call attribute
+        """
+        bill = Place()
+        bill.latitude = 89.98
+        self.assertEqual(type(Place.latitude), float)
+
+    def test_longitude(self):
+        """
+        test the longitude call attribute
+        """
+        bill = Place()
+        bill.longitude = 89.98
+        self.assertEqual(type(Place.longitude), float)
+
+    def test_amenity_ids(self):
+        """
+        test the amenity_ids call attribute
+        """
+        bill = Place()
+        bill.amenity_ids = ["abc"]
+        self.assertEqual(type(Place.amenity_ids), list)
