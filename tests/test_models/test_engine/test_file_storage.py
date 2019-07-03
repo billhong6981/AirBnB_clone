@@ -250,5 +250,15 @@ class Test_FileStorage(unittest.TestCase):
         bill.reload()
         self.assertEqual(len(bill_dict), 2)
 
+    def test_reload_no_jsonfile(self):
+        """
+        test if the json file is exist after using the reload method
+        """
+        bill = FileStorage()
+        if os.path.isfile("file.json"):
+            os.remove("file.json")
+        bill.reload()
+        self.assertFalse(os.path.isfile("file.json"))
+
 if __name__ == "__main__":
     unittest.main()
