@@ -33,6 +33,14 @@ class Test_BaseModel(unittest.TestCase):
         bill = BaseModel()
         self.assertEqual(type(bill.updated_at), datetime)
 
+    def test_str(self):
+        """
+        test for str output
+        """
+        bill = BaseModel()
+        string = "[BaseModel] ({}) {}".format(bill.id, bill.__dict__)
+        self.assertEqual(bill.__str__(), string)
+
     def test_the_str(self):
         """
         test the output of the __str__
