@@ -58,3 +58,35 @@ class Test_UserClass(unittest.TestCase):
         self.assertEqual(kwargs, user1.__dict__)
         self.assertTrue(user1.__dict__ == user1_load.__dict__)
         self.assertTrue(user1_dic, user1_load_dic)
+
+    def test_email(self):
+        """
+        test the email call attribute
+        """
+        bill = User()
+        bill.email = "hug@haoook"
+        self.assertEqual(type(User.email), str)
+
+    def test_password(self):
+        """
+        test the password class attribute
+        """
+        bill = User()
+        bill.password = "abdlfah"
+        self.assertEqual(type(User.password), str)
+
+    def test_first_name(self):
+        """
+        test the first_name class attribute
+        """
+        bill = User()
+        bill.first_name = "Bill Huang"
+        self.assertEqual(type(User.first_name), str)
+
+    def test_last_name(self):
+        """
+        test the last_name class attribute
+        """
+        bill = User()
+        bill.last_name = "Huang"
+        self.assertEqual(type(User.last_name), str)
