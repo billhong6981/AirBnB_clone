@@ -136,5 +136,12 @@ class Test_BaseModel(unittest.TestCase):
         my_new_model = BaseModel(**bill_json)
         self.assertIsNot(my_new_model, BaseModel)
 
+    def test_baseMode_class(self):
+        """
+        test to see if the class BaseModel is type class
+        """
+        bill = BaseModel()
+        self.assertEqual(type(bill), BaseModel)
+
 if __name__ == "__main__":
     unittest.main()
