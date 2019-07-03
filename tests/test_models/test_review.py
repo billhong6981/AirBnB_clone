@@ -58,3 +58,27 @@ class Test_ReviewClass(unittest.TestCase):
         self.assertEqual(kwargs, user1.__dict__)
         self.assertTrue(user1.__dict__ == user1_load.__dict__)
         self.assertTrue(user1_dic, user1_load_dic)
+
+    def test_place_id(self):
+        """
+        test the place_id call attribute
+        """
+        bill = Review()
+        bill.place_id = "abc"
+        self.assertEqual(type(Review.place_id), str)
+
+    def test_user_id(self):
+        """
+        test the user_id call attribute
+        """
+        bill = Review()
+        bill.user_id = "abc"
+        self.assertEqual(type(Review.user_id), str)
+
+    def test_text(self):
+        """
+        test the text call attribute
+        """
+        bill = Review()
+        bill.text = "abc"
+        self.assertEqual(type(Review.text), str)
