@@ -127,5 +127,14 @@ class Test_BaseModel(unittest.TestCase):
         new_id = my_new_model.created_at
         self.assertEqual(old_id, new_id)
 
+    def test_with_is(self):
+        """
+        test using the is operator
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        my_new_model = BaseModel(**bill_json)
+        self.assertIsNot(my_new_model, BaseModel)
+
 if __name__ == "__main__":
     unittest.main()
