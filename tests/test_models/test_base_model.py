@@ -69,5 +69,23 @@ class Test_BaseModel(unittest.TestCase):
         bill.save()
         self.assertNotEqual(bill.updated_at, old_time)
 
+    def test_toDict_toNonDict(self):
+        """
+        test to see if to_dict can convert back
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        my_new_model = BaseModel(**bill_json)
+        self.assertNotEqual(type(my_new_model), dict)
+
+    def test_jsonType(self):
+        """
+        test to see if to_dict can be used as an argument
+        """
+        bill = BaseModel()
+        bill_json = bill.to_dict()
+        my_new_model = BaseModel(**bill_json)
+        self.assertEqual(type(my_new_model), BaseModel)
+
 if __name__ == "__main__":
     unittest.main()
