@@ -96,6 +96,41 @@ class Test_FileStorage(unittest.TestCase):
             read_var = f.read()
             self.assertEqual(f.read(), "")
 
+    def test_save_method_2(self):
+        """
+        test for save
+        """
+        ben = BaseModel(my_number = 98)
+        models.storage.reset_file_path()
+        file = models.storage._FileStorage__file_path
+        self.assertTrue(file == "")
+        self.assertFalse(path.exists("file.json"))
+        models.storage.save()
+        file = models.storage._FileStorage__file_path
+        self.assertFalse(file == "")
+        self.assertTrue(path.exists("file.json"))
+
+    def test_reload_method_2(self):
+        """
+        test for reload
+        """
+        ben = BaseModel()
+        models.storage.save()
+        old_dic = models.storage.all()
+
+        key = ben.__class__.__name__ + "." + ben.id
+        obj_old = models.storage._FileStorage__objects
+        self.assertTrue(obj_old != {})
+        self.assertEqual(obj_old[key], ben)
+        models.storage.reset_obj()
+        new_obj = models.storage._FileStorage__objects
+        self.assertTrue(new_obj == {})
+        new_dic = models.storage.all()
+        new_obj = models.storage._FileStorage__objects
+        self.assertTrue(new_obj == {})
+        new_dic = models.storage.all()
+        self.assertTrue(old_dic != new_dic)
+
     def test_file_exist_1(self):
         """
         test for json file existence
