@@ -88,7 +88,7 @@ Pressing `ENTER` with an empty line shouldn’t execute anything.
 ```
 Note: All commands are case sensitive. If the command is not recognized, please check the spelling.
 
-## Data Diagram
+## Data Diagram :wolf:
 ![Image of the Data Diagram](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/289/AirBnb_DB_diagramm.jpg)
 
 ### Classes Created :snowflake:
@@ -201,7 +201,7 @@ Files in engine | Description
 --- | ---
 [file_storage.py](https://github.com/billhong6981/AirBnB_clone/blob/master/models/engine/file_storage.py) |File containing the source code for the storage engine.
 
-## Final Product
+## Final Product :panda_face:
 ![Screenshot of the Final AirBnB page](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/8-index.png)
 
 ## Testing :poop:
@@ -217,8 +217,8 @@ python3 -m unittest tests/test_models/test_base_model.py
 ## Bugs :bug:
 We have not implemented all the known unit tests often found in similiar AirBnB clone projects.
 
-### About :frog:
-All files were created and compiled on `Ubuntu 14.04.4 LTS` using `GCC 4.8.4`
+## About :frog:
+All files were created and compiled on `Ubuntu 14.04.4 LTS` using `GCC 4.8.4`. :bear:
 
 ## Authors :koala:
 - **Bill Huang** - [billhong6981](https://github.com/billhong6981) :cat:
