@@ -14,7 +14,7 @@ import os
 
 class FileStorage:
     """my serialization/deserialization class"""
-    __file_path = "file.json"
+    __file_path = ""
     __objects = {}
 
     def all(self):
@@ -38,7 +38,7 @@ class FileStorage:
         for key, value in FileStorage.__objects.items():
             dictionary[key] = value.to_dict()
         string = json.dumps(dictionary)
-
+        FileStorage.__file_path = "file.json"
         with open(FileStorage.__file_path, 'w') as f:
             f.write(string)
 
@@ -48,6 +48,7 @@ class FileStorage:
         """
         dictOfdict = {}
         dic_temp = {}
+        FileStorage.__file_path = "file.json"
         try:
             with open(FileStorage.__file_path, 'r') as f:
                 dictOfdict = json.load(f)
@@ -56,3 +57,16 @@ class FileStorage:
             FileStorage.__objects = dic_temp
         except:
             pass
+
+    def reset_obj(self):
+        """
+        reset the __objects to {}
+        """
+        FileStorage.__objects = {}
+
+    def reset_file_path(self):
+        """
+        reset the __file_path to ""
+        """
+        os.remove("file.json")
+        FileStorage.__file_path = ""
