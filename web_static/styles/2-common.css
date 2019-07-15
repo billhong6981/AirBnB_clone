@@ -1,0 +1,10 @@
+body {
+    margin:0px;
+    padding:0px;
+}
+section {
+    position:relative;
+    width:100%;
+    min-height:100vh;
+    padding-bottom:60px;
+}
